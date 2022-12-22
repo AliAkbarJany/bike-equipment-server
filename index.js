@@ -152,6 +152,7 @@ async function run() {
         })
 
         //  Admin create..
+        // (CustomerRow.js).........
         app.put('/customer/admin/:email', verifyJWT, async (req, res) => {
             const email = req.params.email;
             console.log(email)
@@ -172,6 +173,15 @@ async function run() {
             } 
 
         })
+
+         // Delete (user)
+        // (CustomerRow.js).........
+        app.delete("/deleteCustomer/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await customerCollection.deleteOne(query);
+            res.send(result);
+        });
         
         
         // get/Read (admin) for create (Require Admin)
